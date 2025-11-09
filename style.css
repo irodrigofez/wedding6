@@ -9,17 +9,10 @@
 }
 
 /* Fuentes */
-/* Ajustamos las fuentes para aproximarnos más a tu diseño */
-/* 'Alex Brush' o 'Great Vibes' podrían ser alternativas a 'Dancing Script' para los nombres */
-/* Para los títulos de secciones, 'Playfair Display' sigue siendo una buena opción */
-/* Para el texto general y quotes, 'Montserrat' o 'Open Sans' son buenas */
-.dancing-script { font-family: 'Dancing Script', cursive; } /* Lo usaremos para el pie de página y "Nos casamos!" */
+/* 'Sacramento' es una buena aproximación a la fuente cursiva que me mostraste */
+.sacramento { font-family: 'Sacramento', cursive; }
 .playfair-display { font-family: 'Playfair Display', serif; } /* Para títulos de secciones y fechas */
 .montserrat { font-family: 'Montserrat', sans-serif; } /* Para texto general y descripciones */
-
-/* Fuente para los nombres Julia & Diego - esta es clave */
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-.great-vibes { font-family: 'Great Vibes', cursive; }
 
 
 body {
@@ -44,70 +37,67 @@ h1, h2, h3, h4 {
     padding-bottom: 2rem;
     position: relative;
     border-bottom: 1px solid var(--border-color);
-    padding-top: 0; /* Remove top padding as floral decoration is now absolute */
+    padding-top: 0; /* No padding-top aquí, la imagen floral se posiciona con top/left */
 }
 
-.header-decoration-top {
-    background-image: url('https://image.pollinations.ai/prompt/watercolor%20blue%20floral%20design,%20top%20left%20corner,%20elegant,%20transparent%20background,%20vector');
-    background-size: 200px auto; /* Ajusta el tamaño de la flor */
-    background-repeat: no-repeat;
-    background-position: 20px 20px; /* Posiciona la flor en la esquina superior izquierda */
-    height: 150px; /* Suficiente altura para que se vea bien */
-    width: 100%;
+/* Nueva clase para la imagen de flores del encabezado */
+.header-decoration-top-image {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0px; /* Ajusta este valor si necesitas moverla más arriba o abajo */
+    left: 0px; /* Ajusta este valor si necesitas moverla más a la izquierda o derecha */
+    width: 200px; /* Ajusta el tamaño de la flor */
+    height: auto;
     z-index: 1;
 }
 
 .names-section {
-    padding-top: 8rem; /* Ajuste para dejar espacio a la decoración y la cita superior */
+    padding-top: 10rem; /* Ajuste para dejar espacio a la decoración y la cita superior */
     position: relative;
     z-index: 2;
 }
 
-.small-text-top-quote { /* Nueva clase para la cita de arriba */
-    font-family: 'Dancing Script', cursive; /* Estilo de fuente para la cita de arriba */
+.small-text-top-quote { /* Cita superior derecha */
+    font-family: 'Sacramento', cursive; /* Fuente para la cita de arriba */
     font-size: 1.2em;
-    color: var(--primary-blue); /* Color azul como en tu diseño */
+    color: var(--primary-blue);
     margin-bottom: 1rem;
-    position: absolute; /* Posicionamiento absoluto para colocarla */
-    top: 30px; /* Ajusta según sea necesario */
-    right: 20px; /* Posicionar a la derecha */
-    max-width: 250px; /* Limita el ancho para que no ocupe toda la pantalla */
-    text-align: right; /* Alinea el texto a la derecha */
+    position: absolute;
+    top: 50px; /* Posición vertical de la cita */
+    right: 20px; /* Posición horizontal de la cita */
+    max-width: 250px;
+    text-align: right;
     line-height: 1.3;
 }
 
 .small-text { /* Estilo para "¡Nos casamos!" */
-    font-family: 'Dancing Script', cursive; /* Usamos Dancing Script para este */
-    font-size: 1.8em; /* Más grande como en tu diseño */
+    font-family: 'Sacramento', cursive; /* Usamos Sacramento para este */
+    font-size: 2.2em; /* Más grande como en tu diseño */
     color: var(--primary-blue);
     margin-bottom: 0.5rem;
     line-height: 1;
-    position: relative; /* Para ajustar su posicionamiento */
-    top: -20px; /* Moverlo un poco hacia arriba */
+    position: relative;
+    top: -30px; /* Moverlo un poco hacia arriba */
 }
 
 .couple-names {
-    font-family: 'Great Vibes', cursive; /* Usamos Great Vibes para Julia & Diego */
-    font-size: 5em; /* Más grande para que destaque */
+    font-family: 'Sacramento', cursive; /* Usamos Sacramento para Lulu & Diego */
+    font-size: 5em;
     color: var(--primary-blue);
     margin: 0.2em 0;
     line-height: 1;
-    display: flex; /* Para centrar el corazón con los nombres */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .heart-icon {
     display: inline-block;
-    width: 20px; /* Tamaño del corazón */
+    width: 20px;
     height: 20px;
-    background-color: var(--primary-blue); /* Color del corazón */
-    transform: rotate(-45deg); /* Para que parezca un corazón */
+    background-color: var(--primary-blue);
+    transform: rotate(-45deg);
     position: relative;
-    margin: 0 10px; /* Espacio entre los nombres */
+    margin: 0 10px;
 }
 
 .heart-icon::before,
@@ -130,16 +120,13 @@ h1, h2, h3, h4 {
     top: 0;
 }
 
-/* La cita inferior ya no se usa aquí, se movió arriba */
-.quote { display: none; }
-
 .hero-image {
     width: 90%;
     max-width: 600px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
-    margin-top: 1rem; /* Pequeño ajuste para que no choque con los nombres */
+    margin-top: 1rem;
 }
 
 .intro-text {
@@ -420,18 +407,18 @@ h1, h2, h3, h4 {
 }
 
 .gift-registry-decoration {
-    /* Ajustado para el nuevo posicionamiento de la flor del regalo */
+    /* Nueva flor decorativa para esta sección, con estilo similar a la que proporcionaste */
     background-image: url('https://image.pollinations.ai/prompt/watercolor%20blue%20floral%20design,%20top%20right%20corner,%20elegant,%20transparent%20background,%20vector');
-    background-size: 150px auto; /* Ajusta el tamaño de la flor */
+    background-size: 150px auto;
     background-repeat: no-repeat;
-    background-position: calc(100% - 20px) 20px; /* Posiciona en la esquina superior derecha */
+    background-position: calc(100% - 20px) 20px;
     height: 100px;
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
-    transform: none; /* Elimina la rotación que le habíamos dado antes */
+    transform: none;
 }
 
 .gift-registry h3 {
@@ -501,25 +488,25 @@ h1, h2, h3, h4 {
 .footer-text {
     background-color: var(--light-blue-background);
     padding: 3rem 1rem;
-    font-family: 'Dancing Script', cursive; /* Usamos Dancing Script aquí también */
+    font-family: 'Sacramento', cursive; /* Usamos Sacramento aquí también */
     font-size: 3em;
     color: var(--primary-blue);
     position: relative;
 }
 
 .footer-decoration {
-    /* Cambiado para ser el mismo tipo de flor, pero en la esquina inferior derecha */
+    /* Nueva flor decorativa para esta sección, con estilo similar a la que proporcionaste */
     background-image: url('https://image.pollinations.ai/prompt/watercolor%20blue%20floral%20design,%20bottom%20right%20corner,%20elegant,%20transparent%20background,%20vector');
-    background-size: 150px auto; /* Ajusta el tamaño */
+    background-size: 150px auto;
     background-repeat: no-repeat;
-    background-position: calc(100% - 20px) calc(100% - 20px); /* Esquina inferior derecha */
+    background-position: calc(100% - 20px) calc(100% - 20px);
     height: 150px;
     width: 100%;
     position: absolute;
     bottom: 0;
     right: 0;
     z-index: 0;
-    transform: none; /* Elimina la rotación si la tenía */
+    transform: none;
 }
 
 .footer-text p {
@@ -531,20 +518,22 @@ h1, h2, h3, h4 {
 /* Media Queries para Responsividad */
 @media (max-width: 768px) {
     .couple-names {
-        font-size: 3.5em; /* Ajuste para móviles */
+        font-size: 3.5em;
     }
     .small-text {
-        font-size: 1.5em;
+        font-size: 1.8em; /* Ajustado para móviles */
+        top: -15px; /* Ajuste para móviles */
     }
     .small-text-top-quote {
         font-size: 1em;
-        top: 15px;
-        right: 10px;
+        top: 25px; /* Ajuste para móviles */
+        right: 15px; /* Ajuste para móviles */
         max-width: 180px;
     }
-    .header-decoration-top {
-        background-size: 150px auto;
-        background-position: 10px 10px;
+    .header-decoration-top-image {
+        width: 150px; /* Ajuste para móviles */
+        top: 0px;
+        left: 0px;
     }
     .gift-registry-decoration {
         background-size: 120px auto;
@@ -586,17 +575,19 @@ h1, h2, h3, h4 {
         font-size: 3em;
     }
     .small-text {
-        font-size: 1.3em;
+        font-size: 1.5em;
+        top: -10px;
     }
     .small-text-top-quote {
         font-size: 0.9em;
-        top: 10px;
-        right: 5px;
+        top: 20px;
+        right: 10px;
         max-width: 150px;
     }
-    .header-decoration-top {
-        background-size: 120px auto;
-        background-position: 5px 5px;
+    .header-decoration-top-image {
+        width: 120px;
+        top: 0px;
+        left: 0px;
     }
     .gift-registry-decoration {
         background-size: 100px auto;
