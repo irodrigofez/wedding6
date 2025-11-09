@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* CARRUSEL */
     const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
+    const slides = [...track.children];
     const dotsContainer = document.querySelector('.carousel-dots');
     let index = 0;
 
@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
         dotsContainer.appendChild(dot);
     });
 
-    const dots = dotsContainer.children;
+    const dots = [...dotsContainer.children];
 
     function goTo(i) {
         index = i;
         track.style.transform = `translateX(-${index * 100}%)`;
-        [...dots].forEach((d, n) => d.classList.toggle('active', n === index));
+        dots.forEach((d, n) => d.classList.toggle('active', n === index));
     }
 
     setInterval(() => goTo((index + 1) % slides.length), 4000);
