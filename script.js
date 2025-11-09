@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function goTo(i) {
         index = i;
         track.style.transform = `translateX(-${index * 100}%)`;
-        Array.from(dots).forEach((d, n) => d.classList.toggle('active', n === index));
+        [...dots].forEach((d, n) => d.classList.toggle('active', n === index));
     }
 
     setInterval(() => goTo((index + 1) % slides.length), 4000);

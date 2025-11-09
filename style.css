@@ -141,7 +141,7 @@ h1, h2, h3, h4 {
     color: var(--primary-blue);
 }
 
-/* ✅ CARRUSEL - IMÁGENES GRANDES, SIN RECORTE */
+/* ✅ CARRUSEL */
 .carousel {
     width: 100%;
     overflow: hidden;
@@ -185,7 +185,7 @@ h1, h2, h3, h4 {
     padding: 0 1rem 3rem;
 }
 
-/* PARENTS */
+/* ✅ PADRES */
 .parents-info {
     padding: 3rem 1rem;
     border-bottom: 1px solid var(--border-color);
@@ -203,7 +203,7 @@ h1, h2, h3, h4 {
     color: var(--primary-blue);
 }
 
-/* PHOTO FULL */
+/* ✅ FOTO PRINCIPAL */
 .main-couple-image {
     width: 92%;
     border-radius: 16px;
@@ -211,7 +211,7 @@ h1, h2, h3, h4 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* EVENTS */
+/* ✅ EVENTS */
 .events-location {
     padding: 3rem 1rem;
     border-bottom: 1px solid var(--border-color);
@@ -229,13 +229,13 @@ h1, h2, h3, h4 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* DRESS CODE */
+/* ✅ DRESS CODE */
 .dress-code {
     padding: 3rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
 
-/* ✅ MESA DE REGALOS - DECORACIÓN CENTRADA */
+/* ✅ MESA DE REGALOS */
 .gift-registry {
     padding: 3rem 1rem 4rem;
     border-bottom: 1px solid var(--border-color);
@@ -280,4 +280,21 @@ h1, h2, h3, h4 {
     font-family: 'Sacramento', cursive;
     font-size: 3em;
     color: var(--primary-blue);
+}
+
+/* ✅ MEJORAS PARA MÓVIL */
+@media (max-width: 768px) {
+
+  .carousel-track img {
+      height: 260px;
+      object-fit: cover;
+      border-radius: 14px;
+  }
+
+  .couple-names { font-size: 3.4em; }
+  .small-text { font-size: 1.6em; }
+}
+
+@media (max-width: 480px) {
+  .carousel-track img { height: 220px; }
 }
