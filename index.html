@@ -1,151 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Nuestra Boda! Lulu & Diego</title>
-    <link rel="stylesheet" href="./style.css">
-    <!-- Fuentes de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Sacramento para los nombres y "Nos casamos!" se parece más a tu diseño -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Nuestra Boda! Lulu & Diego</title>
+  <link rel="stylesheet" href="./style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="hero">
-        <!-- Flor de decoración superior -->
-        <img src="URL_DE_TU_IMAGEN_DE_FLORES.png" alt="Arreglo floral azul" class="header-decoration-top-image">
-        
-        <div class="names-section">
-            <p class="small-text-top-quote">El destino nos puso en el mismo camino y ahora caminaremos juntos hasta el fin.</p>
-            <p class="small-text">¡Nos casamos!</p>
-            <h1 class="couple-names">Lulu <span class="heart-icon"></span> Diego</h1>
-        </div>
-        <img src="./FOTO1.png" alt="Lulu y Diego felices" class="hero-image">
-        <p class="intro-text">El día más especial será compartir nuestro amor con ustedes. ¡Los esperamos con mucho cariño!</p>
-    </header>
+  <header class="hero">
+    <!-- Flor superior -->
+    <img src="FLORES1.png" alt="Arreglo floral azul" class="header-decoration-top-image">
 
-    <section class="wedding-details">
-        <h2 class="section-title">Nuestra boda</h2>
-        <div class="date-icon">
-            <img src="./ANILLOS.png" alt="Anillo de boda">
-        </div>
-        <p class="wedding-date">28 de Febrero 2026</p>
-        <p class="countdown-label">Falta poco</p>
-        <div id="countdown" class="countdown-timer">
-            <div>
-                <span class="number" id="days">00</span>
-                <span class="unit">DÍAS</span>
-            </div>
-            <div>
-                <span class="number" id="hours">00</span>
-                <span class="unit">HORAS</span>
-            </div>
-            <div>
-                <span class="number" id="minutes">00</span>
-                <span class="unit">MINUTOS</span>
-            </div>
-            <div>
-                <span class="number" id="seconds">00</span>
-                <span class="unit">SEGUNDOS</span>
-            </div>
-        </div>
-    </section>
+    <div class="names-section">
+      <p class="small-text-top-quote">El destino nos puso en el mismo camino y ahora caminaremos juntos hasta el fin.</p>
+      <p class="small-text">¡Nos casamos!</p>
+      <h1 class="couple-names">Lulu <span class="heart-icon"></span> Diego</h1>
+    </div>
 
-    <section class="photo-gallery">
-        <img src="./FOTO2.JPG" alt="Pareja feliz 1">
-        <img src="./FOTO3.JPG" alt="Pareja feliz 2">
-        <img src="./FOTO4.jpg" alt="Pareja feliz 3">
-        <p class="gallery-quote">El amor eterno es lo que permanece <br> y lo que se multiplica en el camino <br> que iniciamos juntos, hoy y para siempre.</p>
-    </section>
+    <img src="./FOTO1.png" alt="Lulu y Diego felices" class="hero-image">
+    <p class="intro-text">El día más especial será compartir nuestro amor con ustedes. ¡Los esperamos con mucho cariño!</p>
+  </header>
 
-    <section class="parents-info">
-        <h3>Bendecidos por nuestros amados y respetados padres</h3>
-        <div class="parents-grid">
-            <div>
-                <p class="role">Padres de la novia:</p>
-                <p class="names">Marcia Guadalupe Pérez Maldonado</p>
-                <p class="names">Salomon Estrada Vaca</p>
-            </div>
-            <div>
-                <p class="role">Padres del novio:</p>
-                <p class="names">Gabriel Alejandro López Cruz</p>
-                <p class="names">Gloria De Los Queredo de Cruz</p>
-            </div>
-        </div>
-        <h3>Nuestros padrinos</h3>
-        <p class="names">Vanessa Valdes Maldonado</p>
-        <p class="names">Carlos Valentin Llerena</p>
-    </section>
+  <!-- CARRUSEL -->
+  <section class="carousel">
+    <div class="carousel-track">
+      <img src="./FOTO2.JPG" alt="Pareja feliz 1">
+      <img src="./FOTO3.JPG" alt="Pareja feliz 2">
+      <img src="./FOTO4.jpg" alt="Pareja feliz 3">
+    </div>
+    <div class="carousel-dots" aria-label="Indicadores de carrusel"></div>
+  </section>
+  <p class="carousel-quote">El amor eterno es lo que permanece <br> y lo que se multiplica en el camino <br> que iniciamos juntos, hoy y para siempre.</p>
 
-    <img src="./FOTO5.jpg" alt="Pareja principal con torii" class="main-couple-image">
+  <section class="wedding-details">
+    <h2 class="section-title">Nuestra boda</h2>
+    <div class="date-icon"><img src="./ANILLOS.png" alt="Anillos"></div>
+    <p class="wedding-date">28 de Febrero 2026</p>
+    <p class="countdown-label">Falta poco</p>
+    <div id="countdown" class="countdown-timer">
+      <div><span class="number" id="days">00</span><span class="unit">DÍAS</span></div>
+      <div><span class="number" id="hours">00</span><span class="unit">HORAS</span></div>
+      <div><span class="number" id="minutes">00</span><span class="unit">MINUTOS</span></div>
+      <div><span class="number" id="seconds">00</span><span class="unit">SEGUNDOS</span></div>
+    </div>
+  </section>
 
-    <section class="events-location">
-        <div class="event-card">
-            <div class="icon-circle">
-                <img src="./IGLESIA.png" alt="Iglesia">
-            </div>
-            <h4>Ceremonia</h4>
-            <p>10:00 AM</p>
-            <p>Iglesia Nuestra Señora de la Candelaria</p>
-            <p>Av. Popocatépetl 1900, Col. Anaya, Benito Juárez, 03340</p>
-            <p>Ciudad de México, CDMX</p>
-            <a href="https://maps.app.goo.gl/tu-link-de-mapa-ceremonia" target="_blank" class="map-button">Ver mapa</a>
-        </div>
-        <div class="event-card">
-            <div class="icon-circle">
-                <img src="./CELEBRACION.png" alt="Celebración">
-            </div>
-            <h4>Celebración</h4>
-            <p>14:00 PM</p>
-            <p>Salón de eventos Blancas</p>
-            <p>11 de Agosto de 1855 907, Lojas de Reforma Ave Secc,</p>
-            <p>Campestre, 03110 Ciudad de México, CDMX</p>
-            <a href="https://maps.app.goo.gl/tu-link-de-mapa-celebracion" target="_blank" class="map-button">Ver mapa</a>
-        </div>
-    </section>
+  <section class="parents-info">
+    <h3>Bendecidos por nuestros amados y respetados padres</h3>
+    <div class="parents-grid">
+      <div>
+        <p class="role">Padres de la novia:</p>
+        <p class="names">Marcia Guadalupe Pérez Maldonado</p>
+        <p class="names">Salomon Estrada Vaca</p>
+      </div>
+      <div>
+        <p class="role">Padres del novio:</p>
+        <p class="names">Gabriel Alejandro López Cruz</p>
+        <p class="names">Gloria De Los Queredo de Cruz</p>
+      </div>
+    </div>
+    <h3>Nuestros padrinos</h3>
+    <p class="names">Vanessa Valdes Maldonado</p>
+    <p class="names">Carlos Valentin Llerena</p>
+  </section>
 
-    <section class="dress-code">
-        <h3>Código de vestimenta</h3>
-        <div class="dress-code-details">
-            <div class="dress-code-item">
-                <p class="role">Ellos</p>
-                <p>Traje formal</p>
-                <p>Corbata</p>
-                <p>Zapatos</p>
-            </div>
-            <div class="dress-code-icon">
-                <img src="./VESTIMENTA.png" alt="Icono de vestimenta">
-            </div>
-            <div class="dress-code-item">
-                <p class="role">Ellas</p>
-                <p>No blanco</p>
-                <p>Vestido largo</p>
-                <p>Tacones</p>
-            </div>
-        </div>
-        <a href="#" class="inspiration-link">Link Inspiración</a>
-    </section>
+  <img src="./FOTO5.jpg" alt="Pareja principal con torii" class="main-couple-image">
 
-    <section class="gift-registry">
-        <!-- Decoración floral de regalo - Usaremos una nueva generada -->
-        <div class="gift-registry-decoration"></div> 
-        <h3>Mesa de regalos</h3>
-        <p>Tu presencia es el mejor regalo, si deseas tener un detalle con nosotros, ¡aquí encontrarás algunas opciones.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Logo Amazon" class="amazon-logo">
-    </section>
+  <section class="events-location">
+    <div class="event-card">
+      <div class="icon-circle"><img src="./IGLESIA.png" alt="Iglesia"></div>
+      <h4>Ceremonia</h4>
+      <p>10:00 AM</p>
+      <p>Iglesia Nuestra Señora de la Candelaria</p>
+      <p>Av. Popocatépetl 1900, Col. Anaya, Benito Juárez, 03340</p>
+      <p>Ciudad de México, CDMX</p>
+      <a href="https://maps.app.goo.gl/tu-link-de-mapa-ceremonia" target="_blank" class="map-button">Ver mapa</a>
+    </div>
+    <div class="event-card">
+      <div class="icon-circle"><img src="./CELEBRACION.png" alt="Celebración"></div>
+      <h4>Celebración</h4>
+      <p>14:00 PM</p>
+      <p>Salón de eventos Blancas</p>
+      <p>11 de Agosto de 1855 907, Lojas de Reforma Ave Secc,</p>
+      <p>Campestre, 03110 Ciudad de México, CDMX</p>
+      <a href="https://maps.app.goo.gl/tu-link-de-mapa-celebracion" target="_blank" class="map-button">Ver mapa</a>
+    </div>
+  </section>
 
-    <section class="confirmation">
-        <h3>Confirmación</h3>
-        <p>¡Esperamos tu asistencia!</p>
-        <button class="confirm-button">Confirmo mi asistencia</button>
-        <button class="confirm-button">No podré asistir</button>
-    </section>
+  <section class="dress-code">
+    <h3>Código de vestimenta</h3>
+    <div class="dress-code-details">
+      <div class="dress-code-item">
+        <p class="role">Ellos</p>
+        <p>Traje formal</p>
+        <p>Corbata</p>
+        <p>Zapatos</p>
+      </div>
+      <div class="dress-code-icon"><img src="./VESTIMENTA.png" alt="Icono de vestimenta"></div>
+      <div class="dress-code-item">
+        <p class="role">Ellas</p>
+        <p>No blanco</p>
+        <p>Vestido largo</p>
+        <p>Tacones</p>
+      </div>
+    </div>
+    <a href="#" class="inspiration-link">Link Inspiración</a>
+  </section>
 
-    <footer class="footer-text">
-        <!-- Decoración floral del footer - Usaremos una nueva generada -->
-        <div class="footer-decoration"></div>
-        <p>¡Te esperamos!</p>
-    </footer>
+  <section class="gift-registry">
+    <div class="gift-registry-decoration"></div>
+    <h3>Mesa de regalos</h3>
+    <p>Tu presencia es el mejor regalo, si deseas tener un detalle con nosotros, ¡aquí encontrarás algunas opciones.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Logo Amazon" class="amazon-logo">
+  </section>
 
-    <script src="script.js"></script>
+  <section class="confirmation">
+    <h3>Confirmación</h3>
+    <p>¡Esperamos tu asistencia!</p>
+    <button class="confirm-button">Confirmo mi asistencia</button>
+    <button class="confirm-button">No podré asistir</button>
+  </section>
+
+  <footer class="footer-text">
+    <div class="footer-decoration"></div>
+    <p>¡Te esperamos!</p>
+  </footer>
+
+  <script src="./script.js"></script>
 </body>
 </html>

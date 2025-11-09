@@ -9,18 +9,16 @@
 }
 
 /* Fuentes */
-/* 'Sacramento' es una buena aproximación a la fuente cursiva que me mostraste */
 .sacramento { font-family: 'Sacramento', cursive; }
-.playfair-display { font-family: 'Playfair Display', serif; } /* Para títulos de secciones y fechas */
-.montserrat { font-family: 'Montserrat', sans-serif; } /* Para texto general y descripciones */
-
+.playfair-display { font-family: 'Playfair Display', serif; }
+.montserrat { font-family: 'Montserrat', sans-serif; }
 
 body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     margin: 0;
     line-height: 1.6;
-    background-color: var(--light-blue-background); /* Fondo azul claro global */
+    background-color: var(--light-blue-background);
     text-align: center;
     overflow-x: hidden;
 }
@@ -37,50 +35,49 @@ h1, h2, h3, h4 {
     padding-bottom: 2rem;
     position: relative;
     border-bottom: 1px solid var(--border-color);
-    padding-top: 0; /* No padding-top aquí, la imagen floral se posiciona con top/left */
+    padding-top: 0;
 }
 
-/* Nueva clase para la imagen de flores del encabezado */
 .header-decoration-top-image {
     position: absolute;
-    top: 0px; /* Ajusta este valor si necesitas moverla más arriba o abajo */
-    left: 0px; /* Ajusta este valor si necesitas moverla más a la izquierda o derecha */
-    width: 200px; /* Ajusta el tamaño de la flor */
+    top: 0px;
+    left: 0px;
+    width: 200px;
     height: auto;
     z-index: 1;
 }
 
 .names-section {
-    padding-top: 10rem; /* Ajuste para dejar espacio a la decoración y la cita superior */
+    padding-top: 10rem;
     position: relative;
     z-index: 2;
 }
 
-.small-text-top-quote { /* Cita superior derecha */
-    font-family: 'Sacramento', cursive; /* Fuente para la cita de arriba */
+.small-text-top-quote {
+    font-family: 'Sacramento', cursive;
     font-size: 1.2em;
     color: var(--primary-blue);
     margin-bottom: 1rem;
     position: absolute;
-    top: 50px; /* Posición vertical de la cita */
-    right: 20px; /* Posición horizontal de la cita */
+    top: 50px;
+    right: 20px;
     max-width: 250px;
     text-align: right;
     line-height: 1.3;
 }
 
-.small-text { /* Estilo para "¡Nos casamos!" */
-    font-family: 'Sacramento', cursive; /* Usamos Sacramento para este */
-    font-size: 2.2em; /* Más grande como en tu diseño */
+.small-text {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.2em;
     color: var(--primary-blue);
     margin-bottom: 0.5rem;
     line-height: 1;
     position: relative;
-    top: -30px; /* Moverlo un poco hacia arriba */
+    top: -30px;
 }
 
 .couple-names {
-    font-family: 'Sacramento', cursive; /* Usamos Sacramento para Lulu & Diego */
+    font-family: 'Sacramento', cursive;
     font-size: 5em;
     color: var(--primary-blue);
     margin: 0.2em 0;
@@ -99,9 +96,7 @@ h1, h2, h3, h4 {
     position: relative;
     margin: 0 10px;
 }
-
-.heart-icon::before,
-.heart-icon::after {
+.heart-icon::before, .heart-icon::after {
     content: '';
     position: absolute;
     width: 20px;
@@ -109,16 +104,8 @@ h1, h2, h3, h4 {
     background-color: var(--primary-blue);
     border-radius: 50%;
 }
-
-.heart-icon::before {
-    top: -10px;
-    left: 0;
-}
-
-.heart-icon::after {
-    left: 10px;
-    top: 0;
-}
+.heart-icon::before { top: -10px; left: 0; }
+.heart-icon::after { left: 10px; top: 0; }
 
 .hero-image {
     width: 90%;
@@ -130,7 +117,6 @@ h1, h2, h3, h4 {
 }
 
 .intro-text {
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.1em;
     margin: 0 1rem 2rem;
     max-width: 700px;
@@ -144,48 +130,34 @@ h1, h2, h3, h4 {
     padding: 3rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
-
 .section-title {
-    font-family: 'Playfair Display', serif;
     font-size: 2em;
     color: var(--primary-blue);
     margin-bottom: 1rem;
 }
-
 .date-icon img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1rem;
+    width: 60px; height: 60px; margin-bottom: 1rem;
 }
-
 .wedding-date {
-    font-family: 'Playfair Display', serif;
     font-size: 1.8em;
     font-weight: bold;
     color: var(--dark-grey);
     margin-bottom: 0.5rem;
 }
-
 .countdown-label {
-    font-family: 'Montserrat', sans-serif;
     font-size: 0.9em;
     color: var(--medium-grey);
     margin-bottom: 1rem;
 }
-
 .countdown-timer {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
     margin-top: 1rem;
 }
-
 .countdown-timer div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; flex-direction: column; align-items: center;
 }
-
 .countdown-timer .number {
     font-family: 'Playfair Display', serif;
     font-size: 2.5em;
@@ -193,40 +165,11 @@ h1, h2, h3, h4 {
     color: var(--primary-blue);
     line-height: 1;
 }
-
 .countdown-timer .unit {
-    font-family: 'Montserrat', sans-serif;
     font-size: 0.8em;
     text-transform: uppercase;
     color: var(--medium-grey);
     margin-top: 0.3rem;
-}
-
-/* Photo Gallery */
-.photo-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    padding: 2rem 1rem;
-    background-color: var(--light-blue-background);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.photo-gallery img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-}
-
-.photo-gallery .gallery-quote {
-    grid-column: 1 / -1;
-    font-family: 'Montserrat', sans-serif;
-    font-style: italic;
-    font-size: 0.9em;
-    color: var(--medium-grey);
-    margin-top: 1rem;
 }
 
 /* Parents Info */
@@ -235,38 +178,17 @@ h1, h2, h3, h4 {
     padding: 3rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
-
 .parents-info h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 1.5em;
     color: var(--dark-grey);
     margin-bottom: 1.5rem;
 }
-
 .parents-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 2rem;
 }
-
-.parents-grid > div {
-    flex: 1 1 300px;
-    max-width: 400px;
-}
-
-.parents-info .role {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: var(--primary-blue);
-    margin-bottom: 0.5rem;
-}
-
-.parents-info .names {
-    font-family: 'Playfair Display', serif;
-    margin: 0.2em 0;
-}
+.parents-grid > div { flex: 1 1 300px; max-width: 400px; }
+.parents-info .role { font-weight: bold; color: var(--primary-blue); margin-bottom: 0.5rem; }
+.parents-info .names { font-family: 'Playfair Display', serif; margin: 0.2em 0; }
 
 .main-couple-image {
     width: 90%;
@@ -281,51 +203,29 @@ h1, h2, h3, h4 {
 .events-location {
     background-color: var(--light-blue-background);
     padding: 3rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
     border-bottom: 1px solid var(--border-color);
 }
-
 .event-card {
     background-color: var(--white);
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    max-width: 350px;
-    flex: 1 1 300px;
+    max-width: 350px; flex: 1 1 300px;
 }
-
 .event-card .icon-circle {
     background-color: transparent;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 60px; height: 60px;
+    display: flex; justify-content: center; align-items: center;
     margin: 0 auto 1rem;
 }
-
-.event-card .icon-circle img {
-    width: 40px;
-    height: 40px;
-}
-
+.event-card .icon-circle img { width: 40px; height: 40px; }
 .event-card h4 {
-    font-family: 'Playfair Display', serif;
     font-size: 1.6em;
     color: var(--primary-blue);
     margin-bottom: 0.8rem;
 }
-
-.event-card p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95em;
-    margin: 0.5em 0;
-    color: var(--dark-grey);
-}
-
+.event-card p { font-size: 0.95em; margin: 0.5em 0; color: var(--dark-grey); }
 .map-button {
     display: inline-block;
     background-color: var(--primary-blue);
@@ -333,15 +233,11 @@ h1, h2, h3, h4 {
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
     font-size: 0.9em;
     margin-top: 1rem;
-    transition: background-color 0.3s ease;
+    transition: background-color .3s ease, transform .2s ease;
 }
-
-.map-button:hover {
-    background-color: #4a6a8c;
-}
+.map-button:hover { background-color: #4a6a8c; transform: translateY(-1px); }
 
 /* Dress Code */
 .dress-code {
@@ -349,53 +245,16 @@ h1, h2, h3, h4 {
     padding: 3rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
-
-.dress-code h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
-    color: var(--dark-grey);
-    margin-bottom: 2rem;
-}
-
+.dress-code h3 { font-size: 1.8em; color: var(--dark-grey); margin-bottom: 2rem; }
 .dress-code-details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;
 }
-
-.dress-code-item {
-    text-align: center;
-    flex: 1 1 150px;
-    max-width: 200px;
-}
-
-.dress-code-item .role {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: var(--primary-blue);
-    margin-bottom: 0.5rem;
-}
-
-.dress-code-item p {
-    font-family: 'Playfair Display', serif;
-    margin: 0.2em 0;
-    font-size: 1.1em;
-}
-
-.dress-code-icon img {
-    width: 80px;
-    height: 80px;
-}
-
+.dress-code-item { text-align: center; flex: 1 1 150px; max-width: 200px; }
+.dress-code-item .role { font-weight: bold; color: var(--primary-blue); margin-bottom: 0.5rem; }
+.dress-code-item p { font-family: 'Playfair Display', serif; margin: 0.2em 0; font-size: 1.1em; }
+.dress-code-icon img { width: 80px; height: 80px; }
 .inspiration-link {
-    display: inline-block;
-    color: var(--primary-blue);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9em;
-    text-decoration: underline;
-    margin-top: 1.5rem;
+    display: inline-block; color: var(--primary-blue); font-size: 0.9em; text-decoration: underline; margin-top: 1.5rem;
 }
 
 /* Gift Registry */
@@ -405,47 +264,19 @@ h1, h2, h3, h4 {
     position: relative;
     border-bottom: 1px solid var(--border-color);
 }
-
 .gift-registry-decoration {
-    /* Nueva flor decorativa para esta sección, con estilo similar a la que proporcionaste */
     background-image: url('https://image.pollinations.ai/prompt/watercolor%20blue%20floral%20design,%20top%20right%20corner,%20elegant,%20transparent%20background,%20vector');
     background-size: 150px auto;
     background-repeat: no-repeat;
     background-position: calc(100% - 20px) 20px;
-    height: 100px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    transform: none;
+    height: 100px; width: 100%;
+    position: absolute; top: 0; left: 0; z-index: 0;
 }
-
-.gift-registry h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
-    color: var(--dark-grey);
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
-}
-
+.gift-registry h3 { font-size: 1.8em; color: var(--dark-grey); margin-bottom: 1rem; position: relative; z-index: 1; }
 .gift-registry p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95em;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    position: relative;
-    z-index: 1;
+    font-size: 0.95em; max-width: 600px; margin: 0 auto 2rem; position: relative; z-index: 1;
 }
-
-.amazon-logo {
-    width: 150px;
-    height: auto;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 1;
-}
+.amazon-logo { width: 150px; height: auto; margin-bottom: 2rem; position: relative; z-index: 1; }
 
 /* Confirmation */
 .confirmation {
@@ -453,164 +284,99 @@ h1, h2, h3, h4 {
     padding: 3rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
-
-.confirmation h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
-    color: var(--dark-grey);
-    margin-bottom: 1rem;
-}
-
-.confirmation p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1em;
-    margin-bottom: 1.5rem;
-}
-
+.confirmation h3 { font-size: 1.8em; color: var(--dark-grey); margin-bottom: 1rem; }
+.confirmation p { font-size: 1.1em; margin-bottom: 1.5rem; }
 .confirm-button {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
-    cursor: pointer;
-    margin: 0.5rem;
-    transition: background-color 0.3s ease;
+    background-color: var(--primary-blue); color: var(--white);
+    padding: 1rem 2rem; border: none; border-radius: 5px;
+    font-size: 1em; cursor: pointer; margin: 0.5rem;
+    transition: background-color .3s ease, transform .2s ease;
 }
-
-.confirm-button:hover {
-    background-color: #4a6a8c;
-}
+.confirm-button:hover { background-color: #4a6a8c; transform: translateY(-1px); }
 
 /* Footer */
 .footer-text {
     background-color: var(--light-blue-background);
     padding: 3rem 1rem;
-    font-family: 'Sacramento', cursive; /* Usamos Sacramento aquí también */
-    font-size: 3em;
-    color: var(--primary-blue);
+    font-family: 'Sacramento', cursive;
+    font-size: 3em; color: var(--primary-blue);
     position: relative;
 }
-
 .footer-decoration {
-    /* Nueva flor decorativa para esta sección, con estilo similar a la que proporcionaste */
     background-image: url('https://image.pollinations.ai/prompt/watercolor%20blue%20floral%20design,%20bottom%20right%20corner,%20elegant,%20transparent%20background,%20vector');
-    background-size: 150px auto;
-    background-repeat: no-repeat;
+    background-size: 150px auto; background-repeat: no-repeat;
     background-position: calc(100% - 20px) calc(100% - 20px);
-    height: 150px;
+    height: 150px; width: 100%;
+    position: absolute; bottom: 0; right: 0; z-index: 0;
+}
+.footer-text p { margin: 0; position: relative; z-index: 1; }
+
+/* ---------------- CARRUSEL ---------------- */
+.carousel {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 0;
-    transform: none;
+    overflow: hidden;
+    background-color: var(--light-blue-background);
+    padding: 2rem 0 0;
+    border-bottom: 1px solid var(--border-color);
 }
-
-.footer-text p {
-    margin: 0;
-    position: relative;
-    z-index: 1;
+.carousel-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.8s ease-in-out;
+    will-change: transform;
 }
+.carousel img {
+    width: 100%;
+    max-height: 330px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    flex: 0 0 100%;
+}
+.carousel-quote {
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-size: 1em;
+    color: var(--medium-grey);
+    margin: 1rem 0 2rem;
+    padding: 0 1rem;
+}
+.carousel-dots {
+    display: flex; justify-content: center; gap: .5rem; padding: .8rem 0 1.2rem;
+}
+.carousel-dots button {
+    width: 8px; height: 8px; border-radius: 50%;
+    border: none; background: #b8c6d6; cursor: pointer; padding: 0;
+}
+.carousel-dots button.active { background: var(--primary-blue); transform: scale(1.15); }
 
-/* Media Queries para Responsividad */
+/* Media Queries */
 @media (max-width: 768px) {
-    .couple-names {
-        font-size: 3.5em;
-    }
-    .small-text {
-        font-size: 1.8em; /* Ajustado para móviles */
-        top: -15px; /* Ajuste para móviles */
-    }
-    .small-text-top-quote {
-        font-size: 1em;
-        top: 25px; /* Ajuste para móviles */
-        right: 15px; /* Ajuste para móviles */
-        max-width: 180px;
-    }
-    .header-decoration-top-image {
-        width: 150px; /* Ajuste para móviles */
-        top: 0px;
-        left: 0px;
-    }
-    .gift-registry-decoration {
-        background-size: 120px auto;
-        background-position: calc(100% - 10px) 10px;
-    }
-    .footer-decoration {
-        background-size: 120px auto;
-        background-position: calc(100% - 10px) calc(100% - 10px);
-    }
-    .hero-image, .main-couple-image {
-        width: 95%;
-    }
-    .countdown-timer {
-        gap: 0.8rem;
-    }
-    .countdown-timer .number {
-        font-size: 1.8em;
-    }
-    .countdown-timer .unit {
-        font-size: 0.7em;
-    }
-    .photo-gallery {
-        grid-template-columns: 1fr;
-    }
-    .parents-grid, .dress-code-details {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    .event-card {
-        max-width: 90%;
-    }
-    .footer-text {
-        font-size: 2.5em;
-    }
+    .couple-names { font-size: 3.5em; }
+    .small-text { font-size: 1.8em; top: -15px; }
+    .small-text-top-quote { font-size: 1em; top: 25px; right: 15px; max-width: 180px; }
+    .header-decoration-top-image { width: 150px; top: 0; left: 0; }
+    .gift-registry-decoration { background-size: 120px auto; background-position: calc(100% - 10px) 10px; }
+    .footer-decoration { background-size: 120px auto; background-position: calc(100% - 10px) calc(100% - 10px); }
+    .hero-image, .main-couple-image { width: 95%; }
+    .countdown-timer { gap: 0.8rem; }
+    .countdown-timer .number { font-size: 1.8em; }
+    .countdown-timer .unit { font-size: 0.7em; }
+    .parents-grid, .dress-code-details { flex-direction: column; gap: 1.5rem; }
+    .event-card { max-width: 90%; }
+    .footer-text { font-size: 2.5em; }
 }
-
 @media (max-width: 480px) {
-    .couple-names {
-        font-size: 3em;
-    }
-    .small-text {
-        font-size: 1.5em;
-        top: -10px;
-    }
-    .small-text-top-quote {
-        font-size: 0.9em;
-        top: 20px;
-        right: 10px;
-        max-width: 150px;
-    }
-    .header-decoration-top-image {
-        width: 120px;
-        top: 0px;
-        left: 0px;
-    }
-    .gift-registry-decoration {
-        background-size: 100px auto;
-        background-position: calc(100% - 5px) 5px;
-    }
-    .footer-decoration {
-        background-size: 100px auto;
-        background-position: calc(100% - 5px) calc(100% - 5px);
-    }
-    .section-title {
-        font-size: 1.8em;
-    }
-    .wedding-date {
-        font-size: 1.5em;
-    }
-    .countdown-timer .number {
-        font-size: 1.5em;
-    }
-    .confirm-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9em;
-    }
-    .footer-text {
-        font-size: 2em;
-    }
+    .couple-names { font-size: 3em; }
+    .small-text { font-size: 1.5em; top: -10px; }
+    .small-text-top-quote { font-size: 0.9em; top: 20px; right: 10px; max-width: 150px; }
+    .header-decoration-top-image { width: 120px; top: 0; left: 0; }
+    .gift-registry-decoration { background-size: 100px auto; background-position: calc(100% - 5px) 5px; }
+    .footer-decoration { background-size: 100px auto; background-position: calc(100% - 5px) calc(100% - 5px); }
+    .section-title { font-size: 1.8em; }
+    .wedding-date { font-size: 1.5em; }
+    .countdown-timer .number { font-size: 1.5em; }
+    .confirm-button { padding: 0.8rem 1.5rem; font-size: 0.9em; }
+    .footer-text { font-size: 2em; }
 }
