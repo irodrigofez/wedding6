@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* ✅ CONFIRMACIÓN API GOOGLE */
-    const API_BASE = "https://script.google.com/macros/s/AKfycbwt1eWYCwFbRp33SXR2tuBjmgKboSeukJbOlMAJUuEkTxnMgoy0JdpkntAXszKyNwbB/exec";
+    const API_BASE = "https://script.google.com/macros/s/AKfycbzyiY2yrfHq1tj_jn5W5hOri1WfqsrsCna-wBQM7R4UBlnZrttMZJGS4yODoNfq8B5b/exec";  // ✅ nuevo
 
     function getParam(name) {
         return new URLSearchParams(window.location.search).get(name);
