@@ -16,35 +16,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* CARRUSEL */
     const track = document.querySelector('.carousel-track');
-    const slides = [...track.children];
-    const dotsContainer = document.querySelector('.carousel-dots');
-    let index = 0;
+    if (track) {
+        const slides = [...track.children];
+        const dotsContainer = document.querySelector('.carousel-dots');
+        let index = 0;
 
-    slides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        if (i === 0) dot.classList.add('active');
-        dot.onclick = () => goTo(i);
-        dotsContainer.appendChild(dot);
-    });
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goTo(i);
+            dotsContainer.appendChild(dot);
+        });
 
-    const dots = [...dotsContainer.children];
+        const dots = [...dotsContainer.children];
 
-    function goTo(i) {
-        index = i;
-        track.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach((d, n) => d.classList.toggle('active', n === index));
+        function goTo(i) {
+            index = i;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach((d, n) => d.classList.toggle('active', n === index));
+        }
+
+        setInterval(() => goTo((index + 1) % slides.length), 4000);
     }
 
-    setInterval(() => goTo((index + 1) % slides.length), 4000);
 
-
-
-    /* ✅ CONFIRMACIÓN */
-    
-    const API_BASE = "https://wedding6-api.onrender.com";
+    /* ✅ CONFIRMACIÓN A GOOGLE SHEETS */
+    const API_BASE = "https://script.google.com/macros/s/AKfycbwjhw_B6no9E2sQ2-IliFdEc4Fm-tOcHqQ71PSHxFjDVaZlE-c1gLvRwl32ebYxTgh4/exec";
 
     function getParam(name) {
-      return new URLSearchParams(window.location.search).get(name);
+        return new URLSearchParams(window.location.search).get(name);
     }
 
     const id = getParam("id");
@@ -61,49 +61,51 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    function cargarDatos() {
-        fetch(`${API_BASE}/invitado/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) {
-                    famLegend.textContent = "❌ Invitación no encontrada.";
-                    btns.style.display = "none";
-                    return;
-                }
+    fetch(`${API_BASE}?id=${id}`)
+        .then(res => res.json())
+        .then(data => {
 
-                famLegend.innerHTML = `<strong>${data.familia}</strong> — Invitados: <strong>${data.personas}</strong>`;
-                namesLegend.textContent = "Nombres: " + data.nombres.join(", ");
+            if (data.error) {
+                famLegend.textContent = "❌ Invitación no encontrada.";
+                btns.style.display = "none";
+                return;
+            }
 
-                if (data.respondio) {
-                    btnSi.disabled = true;
-                    btnNo.disabled = true;
-                    btns.style.opacity = 0.5;
-                    msg.textContent = `✅ Gracias por responder (${data.respuesta === "si" ? "Asistirá" : "No asistirá"}).`;
-                } else {
-                    btnSi.onclick = () => confirmar("si", data);
-                    btnNo.onclick = () => confirmar("no", data);
-                }
-            });
-    }
+            famLegend.innerHTML = `<strong>${data.familia}</strong> — Invitados: <strong>${data.personas}</strong>`;
+            namesLegend.textContent = "Nombres: " + data.nombres.join(", ");
+
+            if (data.respondio) {
+                btnSi.disabled = true;
+                btnNo.disabled = true;
+                btns.style.opacity = 0.5;
+                msg.textContent = `✅ Gracias por responder (${data.respuesta}).`;
+            }
+
+            btnSi.onclick = () => confirmar("SI", data);
+            btnNo.onclick = () => confirmar("NO", data);
+
+        });
 
     function confirmar(respuesta, data) {
         btnSi.disabled = true;
         btnNo.disabled = true;
 
-        fetch(`${API_BASE}/confirmar`, {
+        fetch(API_BASE, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 id: id,
-                respuesta,
-                asistentes: respuesta === "si" ? data.personas : 0,
-                nombres_confirmados: respuesta === "si" ? data.nombres : []
+                familia: data.familia,
+                personas: data.personas,
+                nombres: data.nombres,
+                respuesta: respuesta,
+                asistentes: respuesta === "SI" ? data.personas : 0,
+                nombres_confirmados: respuesta === "SI" ? data.nombres : []
             })
         })
         .then(() => {
             msg.textContent = "✅ ¡Gracias por responder!";
             btns.style.opacity = 0.5;
-            setTimeout(cargarDatos, 400); // Recarga la info para bloquear botones
         })
         .catch(() => {
             msg.textContent = "❌ Error al enviar la respuesta.";
@@ -111,7 +113,5 @@ document.addEventListener('DOMContentLoaded', function() {
             btnNo.disabled = false;
         });
     }
-
-    cargarDatos();
 
 });
