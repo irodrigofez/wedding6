@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* ✅ CONFIRMACIÓN API GOOGLE */
-    const API_BASE = "https://script.google.com/macros/s/AKfycbzyiY2yrfHq1tj_jn5W5hOri1WfqsrsCna-wBQM7R4UBlnZrttMZJGS4yODoNfq8B5b/exec";  // ✅ nuevo
+    const API_BASE = "https://script.google.com/macros/s/AKfycbz9HZkc1FxsUZvxH4en3A1VqGVxFQfRHRmLkmnlIRQk7OXAjrFcObZnfEEOMDaulfRR/exec";
 
     function getParam(name) {
         return new URLSearchParams(window.location.search).get(name);
@@ -59,10 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    // Cargar datos del invitado
     fetch(`${API_BASE}?id=${id}`)
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error('Error en la respuesta del servidor');
+            return res.json();
+        })
         .then(data => {
-
             if (data.error) {
                 famLegend.textContent = "❌ Invitación no encontrada.";
                 btns.style.display = "none";
@@ -72,40 +75,50 @@ document.addEventListener('DOMContentLoaded', function() {
             famLegend.innerHTML = `<strong>${data.familia}</strong> — Invitados: <strong>${data.personas}</strong>`;
             namesLegend.textContent = "Nombres: " + data.nombres.join(", ");
 
-            if (data.respondio) {
-                btnSi.disabled = true;
-                btnNo.disabled = true;
-                btns.style.opacity = 0.5;
-                msg.textContent = `✅ Gracias por responder (${data.respuesta}).`;
-            }
-
             btnSi.onclick = () => confirmar("SI", data);
             btnNo.onclick = () => confirmar("NO", data);
-
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            famLegend.textContent = "❌ Error al cargar la invitación.";
+            btns.style.display = "none";
         });
 
     function confirmar(respuesta, data) {
         btnSi.disabled = true;
         btnNo.disabled = true;
+        msg.textContent = "Enviando respuesta...";
+
+        // Crear FormData en lugar de JSON
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('familia', data.familia);
+        formData.append('personas', data.personas);
+        formData.append('nombres', data.nombres.join(';'));
+        formData.append('respuesta', respuesta);
+        formData.append('asistentes', respuesta === "SI" ? data.personas : 0);
+        formData.append('nombres_confirmados', respuesta === "SI" ? data.nombres.join(';') : '');
 
         fetch(API_BASE, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                id: id,
-                familia: data.familia,
-                personas: data.personas,
-                nombres: data.nombres,
-                respuesta: respuesta,
-                asistentes: respuesta === "SI" ? data.personas : 0,
-                nombres_confirmados: respuesta === "SI" ? data.nombres : []
-            })
+            body: formData
         })
-        .then(() => {
-            msg.textContent = "✅ ¡Gracias por responder!";
-            btns.style.opacity = 0.5;
+        .then(response => {
+            if (!response.ok) throw new Error('Error en la respuesta');
+            return response.json();
         })
-        .catch(() => {
+        .then(result => {
+            if (result.ok) {
+                msg.textContent = "✅ ¡Gracias por responder!";
+                btns.style.opacity = 0.5;
+                btnSi.disabled = true;
+                btnNo.disabled = true;
+            } else {
+                throw new Error('Error del servidor');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
             msg.textContent = "❌ Error al enviar la respuesta.";
             btnSi.disabled = false;
             btnNo.disabled = false;
