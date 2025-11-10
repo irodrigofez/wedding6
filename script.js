@@ -61,30 +61,30 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    fetch(`${API_BASE}/invitado/${id}`)
-        .then(res => res.json())
-        .then(data => {
+    function cargarDatos() {
+        fetch(`${API_BASE}/invitado/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    famLegend.textContent = "❌ Invitación no encontrada.";
+                    btns.style.display = "none";
+                    return;
+                }
 
-            if (data.error) {
-                famLegend.textContent = "❌ Invitación no encontrada.";
-                btns.style.display = "none";
-                return;
-            }
+                famLegend.innerHTML = `<strong>${data.familia}</strong> — Invitados: <strong>${data.personas}</strong>`;
+                namesLegend.textContent = "Nombres: " + data.nombres.join(", ");
 
-            famLegend.innerHTML = `<strong>${data.familia}</strong> — Invitados: <strong>${data.personas}</strong>`;
-            namesLegend.textContent = "Nombres: " + data.nombres.join(", ");
-
-            if (data.respondio) {
-                btnSi.disabled = true;
-                btnNo.disabled = true;
-                btns.style.opacity = 0.5;
-                msg.textContent = `✅ Gracias por responder (${data.respuesta}).`;
-            }
-
-            btnSi.onclick = () => confirmar("SI", data);
-            btnNo.onclick = () => confirmar("NO", data);
-
-        });
+                if (data.respondio) {
+                    btnSi.disabled = true;
+                    btnNo.disabled = true;
+                    btns.style.opacity = 0.5;
+                    msg.textContent = `✅ Gracias por responder (${data.respuesta === "si" ? "Asistirá" : "No asistirá"}).`;
+                } else {
+                    btnSi.onclick = () => confirmar("si", data);
+                    btnNo.onclick = () => confirmar("no", data);
+                }
+            });
+    }
 
     function confirmar(respuesta, data) {
         btnSi.disabled = true;
@@ -95,14 +95,15 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 id: id,
-                respuesta: respuesta,
-                asistentes: respuesta === "SI" ? data.personas : 0,
-                nombres_confirmados: respuesta === "SI" ? data.nombres : []
+                respuesta,
+                asistentes: respuesta === "si" ? data.personas : 0,
+                nombres_confirmados: respuesta === "si" ? data.nombres : []
             })
         })
         .then(() => {
             msg.textContent = "✅ ¡Gracias por responder!";
             btns.style.opacity = 0.5;
+            setTimeout(cargarDatos, 400); // Recarga la info para bloquear botones
         })
         .catch(() => {
             msg.textContent = "❌ Error al enviar la respuesta.";
@@ -110,5 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             btnNo.disabled = false;
         });
     }
+
+    cargarDatos();
 
 });
