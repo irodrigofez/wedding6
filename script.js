@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(() => goTo((index + 1) % slides.length), 4000);
     }
 
-    /* ✅ CONFIRMACIÓN API GOOGLE */
-    const API_BASE = "https://script.google.com/macros/s/AKfycbz9HZkc1FxsUZvxH4en3A1VqGVxFQfRHRmLkmnlIRQk7OXAjrFcObZnfEEOMDaulfRR/exec";
+    /* ✅ NUEVA API (Render) */
+    const API_BASE = "https://weddinapi.onrender.com";
 
     function getParam(name) {
         return new URLSearchParams(window.location.search).get(name);
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Cargar invitado
-    fetch(`${API_BASE}?id=${id}`)
+    // ✅ Cargar invitado desde la API nueva
+    fetch(`${API_BASE}/invitado?id=${id}`)
         .then(res => res.json())
         .then(data => {
             if (data.error) {
@@ -76,39 +76,45 @@ document.addEventListener('DOMContentLoaded', function() {
             btnNo.onclick = () => confirmar("NO", data);
         })
         .catch(() => {
-            famLegend.innerHTML = "❌ Error al cargar la invitación.";
+            famLegend.innerHTML = "❌ Error de conexión.";
             btns.style.display = "none";
         });
 
+    // ✅ Enviar confirmación a Google Sheets vía Render
     function confirmar(respuesta, data) {
         btnSi.disabled = true;
         btnNo.disabled = true;
         msg.textContent = "Enviando respuesta...";
 
-        const formData = new FormData();
-        formData.append('id', id);
-        formData.append('familia', data.familia);
-        formData.append('personas', data.personas);
-        formData.append('nombres', data.nombres.join(';'));
-        formData.append('respuesta', respuesta);
-        formData.append('asistentes', respuesta === "SI" ? data.personas : 0);
-        formData.append('nombres_confirmados', respuesta === "SI" ? data.nombres.join(';') : '');
-
-        fetch(API_BASE, { method: "POST", body: formData })
-            .then(r => r.json())
-            .then(result => {
-                if (result.ok) {
-                    msg.innerHTML = "✅ <strong>¡Gracias por confirmar!</strong>";
-                } else {
-                    msg.innerHTML = "❌ Error al guardar la respuesta.";
-                }
-                btns.style.opacity = 0.5;
+        fetch(`${API_BASE}/confirmar`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id: id,
+                familia: data.familia,
+                personas: data.personas,
+                nombres: data.nombres.join(";"),
+                respuesta: respuesta,
+                asistentes: respuesta === "SI" ? data.personas : 0,
+                nombres_confirmados: respuesta === "SI" ? data.nombres.join(";") : ""
             })
-            .catch(() => {
-                msg.innerHTML = "❌ Error al enviar la respuesta.";
+        })
+        .then(res => res.json())
+        .then(result => {
+            if (result.ok) {
+                msg.innerHTML = "✅ <strong>¡Gracias por confirmar!</strong> 💖";
+                btns.style.opacity = 0.5;
+            } else {
+                msg.innerHTML = "❌ Error al guardar la respuesta.";
                 btnSi.disabled = false;
                 btnNo.disabled = false;
-            });
+            }
+        })
+        .catch(() => {
+            msg.innerHTML = "❌ Error de conexión.";
+            btnSi.disabled = false;
+            btnNo.disabled = false;
+        });
     }
 
 });
