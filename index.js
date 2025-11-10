@@ -1,110 +1,80 @@
 import express from "express";
-import fs from "fs";
-import path from "path";
 import cors from "cors";
-import { parse } from "csv-parse";
-import { stringify } from "csv-stringify";
+import fs from "fs";
+import { parse } from "csv-parse/sync";
+import { stringify } from "csv-stringify/sync";
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
-const DATA_DIR = path.resolve("./");
-const INVITADOS_CSV = path.join(DATA_DIR, "invitados.csv");
-const RESPUESTAS_CSV = path.join(DATA_DIR, "respuestas.csv");
+// ✅ PERMITIR ACCESO desde tu sitio
+app.use(cors({
+  origin: "https://wedding6.onrender.com"
+}));
 
-function readCSV(filePath) {
-  return new Promise((resolve, reject) => {
-    const rows = [];
-    if (!fs.existsSync(filePath)) return resolve([]);
-    fs.createReadStream(filePath)
-      .pipe(parse({ columns: true, trim: true }))
-      .on("data", (row) => rows.push(row))
-      .on("end", () => resolve(rows))
-      .on("error", (err) => reject(err));
-  });
+// ✅ Leer invitados desde CSV
+function readInvitados() {
+  const file = fs.readFileSync("invitados.csv");
+  return parse(file, { columns: true, skip_empty_lines: true }).map(row => ({
+    id: row.id,
+    familia: row.familia,
+    personas: Number(row.personas),
+    nombres: row.nombres.split(";"),
+    respondio: row.respondio === "SI" || row.respondio === "NO",
+    respuesta: row.respondio || null
+  }));
 }
 
-function appendCSV(filePath, headers, row) {
-  return new Promise((resolve, reject) => {
-    const exists = fs.existsSync(filePath);
-    const stringifier = stringify({ header: !exists, columns: headers });
-    const writable = fs.createWriteStream(filePath, { flags: "a" });
-    stringifier.on("error", reject);
-    writable.on("error", reject);
-    writable.on("finish", resolve);
-    stringifier.pipe(writable);
-    stringifier.write(row);
-    stringifier.end();
-  });
+// ✅ Guardar confirmaciones en respuestas.csv
+function saveRespuesta(data) {
+  const exists = fs.existsSync("respuestas.csv");
+  const newRow = [
+    data.id,
+    data.familia,
+    data.personas,
+    data.nombres.join(";"),
+    data.respuesta,
+    data.asistentes,
+    data.nombres_confirmados.join(";"),
+    new Date().toLocaleString("es-MX")
+  ];
+
+  const csvData = stringify([newRow]);
+  fs.appendFileSync("respuestas.csv", exists ? csvData : 
+    "id,familia,personas,nombres,respuesta,asistentes,nombres_confirmados,fecha\n" + csvData);
 }
 
-async function ensureRespuestasFile() {
-  if (!fs.existsSync(RESPUESTAS_CSV)) {
-    await appendCSV(RESPUESTAS_CSV,
-      ["id","familia","personas","nombres","respuesta","asistentes","nombres_confirmados","fecha_iso"],
-      { id:"", familia:"", personas:"", nombres:"", respuesta:"", asistentes:"", nombres_confirmados:"", fecha_iso:"" }
-    );
-    const rows = await readCSV(RESPUESTAS_CSV);
-    const clean = rows.filter(r => r.id);
-    const columns = ["id","familia","personas","nombres","respuesta","asistentes","nombres_confirmados","fecha_iso"];
-    const out = stringify(clean, { header: true, columns });
-    fs.writeFileSync(RESPUESTAS_CSV, out);
-  }
-}
+// ✅ Obtener invitado por ID
+app.get("/invitado/:id", (req, res) => {
+  const invitados = readInvitados();
+  const invitado = invitados.find(i => i.id === req.params.id);
 
-app.get("/invitado/:id", async (req, res) => {
-  const { id } = req.params;
-  const invitados = await readCSV(INVITADOS_CSV);
-  const inv = invitados.find(r => (r.id || "").toUpperCase() === id.toUpperCase());
-  if (!inv) return res.status(404).json({ error: "Invitado no encontrado" });
+  if (!invitado) return res.json({ error: "Invitado no encontrado" });
 
-  const respuestas = await readCSV(RESPUESTAS_CSV);
-  const ya = respuestas.find(r => (r.id || "").toUpperCase() === id.toUpperCase());
-
-  const nombresLista = (inv.nombres || "").split(";").map(n => n.trim()).filter(Boolean);
-
-  res.json({
-    id: inv.id,
-    familia: inv.familia,
-    personas: Number(inv.personas || nombresLista.length),
-    nombres: nombresLista,
-    respondio: Boolean(ya),
-    respuesta: ya?.respuesta || null,
-  });
+  res.json(invitado);
 });
 
-app.post("/confirmar", async (req, res) => {
-  await ensureRespuestasFile();
+// ✅ Guardar confirmación
+app.post("/confirmar", (req, res) => {
   const { id, respuesta, asistentes, nombres_confirmados } = req.body;
+  const invitados = readInvitados();
+  const invitado = invitados.find(i => i.id === id);
 
-  const invitados = await readCSV(INVITADOS_CSV);
-  const inv = invitados.find(r => (r.id || "").toUpperCase() === id.toUpperCase());
-  if (!inv) return res.status(404).json({ error: "Invitado no encontrado" });
+  if (!invitado) return res.status(400).json({ error: "ID inválido" });
 
-  const respuestas = await readCSV(RESPUESTAS_CSV);
-  if (respuestas.find(r => (r.id || "").toUpperCase() === id.toUpperCase())) {
-    return res.status(409).json({ error: "Ya respondió" });
-  }
-
-  const fecha_iso = new Date().toISOString();
-  await appendCSV(
-    RESPUESTAS_CSV,
-    ["id","familia","personas","nombres","respuesta","asistentes","nombres_confirmados","fecha_iso"],
-    {
-      id: inv.id,
-      familia: inv.familia,
-      personas: inv.personas,
-      nombres: inv.nombres,
-      respuesta,
-      asistentes,
-      nombres_confirmados: (nombres_confirmados || []).join(";"),
-      fecha_iso
-    }
-  );
+  saveRespuesta({
+    id,
+    familia: invitado.familia,
+    personas: invitado.personas,
+    nombres: invitado.nombres,
+    respuesta,
+    asistentes,
+    nombres_confirmados
+  });
 
   res.json({ ok: true });
 });
 
-app.listen(PORT, () => console.log("✅ API corriendo en puerto " + PORT));
+// ✅ Puerto para Render
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => console.log(`✅ API corriendo en puerto ${PORT}`));
