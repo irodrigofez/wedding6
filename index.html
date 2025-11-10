@@ -7,23 +7,24 @@
   <link rel="stylesheet" href="./style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <!-- HERO -->
   <header class="hero">
-    <img src="FLORES1.png" alt="Arreglo floral azul" class="header-decoration-top-image">
-    
+    <img src="FLORES1.png" alt="Decoración floral" class="header-decoration-top-image">
+
     <div class="names-section">
       <p class="small-text-top-quote">El destino nos puso en el mismo camino y ahora caminaremos juntos hasta el fin.</p>
       <p class="small-text">¡Nos casamos!</p>
       <h1 class="couple-names">Lulu <span class="heart-icon"></span> Diego</h1>
     </div>
 
-    <img src="./FOTO1.png" alt="Lulu y Diego felices" class="hero-image">
+    <img src="./FOTO1.png" alt="Lulu y Diego" class="hero-image">
     <p class="intro-text">El día más especial será compartir nuestro amor con ustedes. ¡Los esperamos con mucho cariño!</p>
   </header>
 
-  <!-- NUESTRA BODA + CONTADOR -->
+  <!-- NUESTRA BODA -->
   <section class="wedding-details">
     <h2 class="section-title">Nuestra boda</h2>
     <div class="date-icon"><img src="./ANILLOS.png" alt="Anillos"></div>
@@ -31,19 +32,19 @@
     <p class="countdown-label">Falta poco</p>
 
     <div id="countdown" class="countdown-timer">
-      <div><span class="number" id="days">00</span><span class="unit">DÍAS</span></div>
-      <div><span class="number" id="hours">00</span><span class="unit">HORAS</span></div>
-      <div><span class="number" id="minutes">00</span><span class="unit">MINUTOS</span></div>
-      <div><span class="number" id="seconds">00</span><span class="unit">SEGUNDOS</span></div>
+      <div><span id="days" class="number">00</span><span class="unit">DÍAS</span></div>
+      <div><span id="hours" class="number">00</span><span class="unit">HORAS</span></div>
+      <div><span id="minutes" class="number">00</span><span class="unit">MINUTOS</span></div>
+      <div><span id="seconds" class="number">00</span><span class="unit">SEGUNDOS</span></div>
     </div>
   </section>
 
-  <!-- CARRUSEL (después de contador) -->
+  <!-- CARRUSEL -->
   <section class="carousel">
     <div class="carousel-track">
-      <img src="./FOTO2.JPG" alt="Pareja feliz 1">
-      <img src="./FOTO3.JPG" alt="Pareja feliz 2">
-      <img src="./FOTO4.jpg" alt="Pareja feliz 3">
+      <img src="./FOTO2.JPG" alt="Foto 1">
+      <img src="./FOTO3.JPG" alt="Foto 2">
+      <img src="./FOTO4.jpg" alt="Foto 3">
     </div>
     <div class="carousel-dots"></div>
   </section>
@@ -57,7 +58,6 @@
   <!-- PADRES -->
   <section class="parents-info">
     <h3>Bendecidos por nuestros amados y respetados padres</h3>
-
     <div class="parents-grid">
       <div>
         <p class="role">Padres de la novia:</p>
@@ -76,7 +76,7 @@
     <p class="names">Carlos Valentín Llerena</p>
   </section>
 
-  <img src="./FOTO5.jpg" alt="Foto Especial" class="main-couple-image">
+  <img src="./FOTO5.jpg" class="main-couple-image" alt="Foto Especial">
 
   <!-- EVENTOS -->
   <section class="events-location">
@@ -111,9 +111,7 @@
         <p>Corbata</p>
         <p>Zapatos</p>
       </div>
-
-      <div class="dress-code-icon"><img src="./VESTIMENTA.png" alt="Icono Vestimenta"></div>
-
+      <div class="dress-code-icon"><img src="./VESTIMENTA.png" alt="Vestimenta"></div>
       <div class="dress-code-item">
         <p class="role">Ellas</p>
         <p>No blanco</p>
@@ -124,20 +122,27 @@
     <a href="#" class="inspiration-link">Link Inspiración</a>
   </section>
 
-  <!-- MESA DE REGALOS -->
+  <!-- MESA -->
   <section class="gift-registry">
     <div class="gift-registry-decoration"></div>
     <h3>Mesa de regalos</h3>
-    <p>Tu presencia es el mejor regalo, si deseas tener un detalle con nosotros, aquí encontrarás algunas opciones.</p>
+    <p>Tu presencia es el mejor regalo...</p>
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="amazon-logo">
   </section>
 
-  <!-- CONFIRMACIÓN -->
-  <section class="confirmation">
+  <!-- ✅ CONFIRMACION FINAL -->
+  <section class="confirmation" id="confirmacion">
     <h3>Confirmación</h3>
-    <p>¡Esperamos tu asistencia!</p>
-    <button class="confirm-button">Confirmo mi asistencia</button>
-    <button class="confirm-button">No podré asistir</button>
+
+    <p id="familia-legend"></p>
+    <p id="nombres-legend" style="color:#666; font-size:14px;"></p>
+
+    <div id="confirm-buttons">
+      <button id="btn-si" class="confirm-button">Confirmo mi asistencia</button>
+      <button id="btn-no" class="confirm-button">No podré asistir</button>
+    </div>
+
+    <p id="confirm-msg"></p>
   </section>
 
   <!-- FOOTER -->
