@@ -54,33 +54,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const btns = document.getElementById("confirm-buttons");
 
     if (!id) {
-        famLegend.textContent = "⚠️ Esta invitación necesita un código válido.";
+        famLegend.innerHTML = "⚠️ <strong>Esta invitación no es válida.</strong>";
         btns.style.display = "none";
         return;
     }
 
-    // Cargar datos del invitado
+    // Cargar invitado
     fetch(`${API_BASE}?id=${id}`)
-        .then(res => {
-            if (!res.ok) throw new Error('Error en la respuesta del servidor');
-            return res.json();
-        })
+        .then(res => res.json())
         .then(data => {
             if (data.error) {
-                famLegend.textContent = "❌ Invitación no encontrada.";
+                famLegend.innerHTML = "❌ <strong>Invitación no encontrada.</strong>";
                 btns.style.display = "none";
                 return;
             }
 
             famLegend.innerHTML = `<strong>${data.familia}</strong> — Invitados: <strong>${data.personas}</strong>`;
-            namesLegend.textContent = "Nombres: " + data.nombres.join(", ");
+            namesLegend.innerHTML = `Nombres: ${data.nombres.join(", ")}`;
 
             btnSi.onclick = () => confirmar("SI", data);
             btnNo.onclick = () => confirmar("NO", data);
         })
-        .catch(error => {
-            console.error('Error:', error);
-            famLegend.textContent = "❌ Error al cargar la invitación.";
+        .catch(() => {
+            famLegend.innerHTML = "❌ Error al cargar la invitación.";
             btns.style.display = "none";
         });
 
@@ -89,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         btnNo.disabled = true;
         msg.textContent = "Enviando respuesta...";
 
-        // Crear FormData en lugar de JSON
         const formData = new FormData();
         formData.append('id', id);
         formData.append('familia', data.familia);
@@ -99,30 +94,21 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('asistentes', respuesta === "SI" ? data.personas : 0);
         formData.append('nombres_confirmados', respuesta === "SI" ? data.nombres.join(';') : '');
 
-        fetch(API_BASE, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) throw new Error('Error en la respuesta');
-            return response.json();
-        })
-        .then(result => {
-            if (result.ok) {
-                msg.textContent = "✅ ¡Gracias por responder!";
+        fetch(API_BASE, { method: "POST", body: formData })
+            .then(r => r.json())
+            .then(result => {
+                if (result.ok) {
+                    msg.innerHTML = "✅ <strong>¡Gracias por confirmar!</strong>";
+                } else {
+                    msg.innerHTML = "❌ Error al guardar la respuesta.";
+                }
                 btns.style.opacity = 0.5;
-                btnSi.disabled = true;
-                btnNo.disabled = true;
-            } else {
-                throw new Error('Error del servidor');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            msg.textContent = "❌ Error al enviar la respuesta.";
-            btnSi.disabled = false;
-            btnNo.disabled = false;
-        });
+            })
+            .catch(() => {
+                msg.innerHTML = "❌ Error al enviar la respuesta.";
+                btnSi.disabled = false;
+                btnNo.disabled = false;
+            });
     }
 
 });
