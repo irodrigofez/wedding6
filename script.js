@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    /* COUNTDOWN */
+    /* COUNTDOWN TIMER */
     const weddingDate = new Date("Feb 28, 2026 00:00:00").getTime();
     setInterval(() => {
         const now = Date.now();
@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("minutes").textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
         document.getElementById("seconds").textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
     }, 1000);
-
 
     /* CARRUSEL */
     const track = document.querySelector('.carousel-track');
@@ -39,13 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(() => goTo((index + 1) % slides.length), 4000);
     }
 
+    /* ✅ CONFIRMACIÓN API GOOGLE */
+    const API_BASE = "https://script.google.com/macros/s/AKfycbwt1eWYCwFbRp33SXR2tuBjmgKboSeukJbOlMAJUuEkTxnMgoy0JdpkntAXszKyNwbB/exec";
 
-    /* ✅ URLs Google Sheets */
-    const API_READ = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiwXZZTeWLg7nF_DG5qlLo6KvVqnWX-mhnXgE1vOcHD2qRS7wZO_L23aq0fxqTyCsGUnRGBrK6sC6SoUkQ60nZdVNJur2O_lAvj0jqkWodqK3G2mQjDMpJzKdZn11mY9u60EnlbAP18MA-icqWk3wOzJ_TnRhYWiseZe9WVTlSJ2ADKfmuUw66QtDbZtNbBJLzosNR1qg65rTua_wxeFygvHANgp9dtOuoxiSwo_Ph1eq2hUpz6bp7lTCs3Pjdg1ektcnTc4rFGhttVYJqWZYy22zgVs-dKQir7l9JUTnwf88e-ipQ&lib=MIYF7j0mrSlnPSmO3Bb6emTPTuxB3ZxFA";
-    const API_BASE = "https://script.google.com/macros/s/AKfycbwjhw_B6no9E2sQ2-IliFdEc4Fm-tOcHqQ71PSHxFjDVaZlE-c1gLvRwl32ebYxTgh4/exec";
-
-
-    /* Obtener ID desde la URL */
     function getParam(name) {
         return new URLSearchParams(window.location.search).get(name);
     }
@@ -64,9 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-
-    /* ✅ Leer invitado */
-    fetch(`${API_READ}?id=${id}`)
+    fetch(`${API_BASE}?id=${id}`)
         .then(res => res.json())
         .then(data => {
 
@@ -91,8 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         });
 
-
-    /* ✅ Guardar respuesta */
     function confirmar(respuesta, data) {
         btnSi.disabled = true;
         btnNo.disabled = true;
